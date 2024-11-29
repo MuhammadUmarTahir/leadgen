@@ -56,7 +56,7 @@ export async function searchNeighborhoods(city: string, state: string): Promise<
     // Remove duplicates based on name and coordinates
     const uniqueNeighborhoods = Array.from(
       new Map(
-        neighborhoods.map(n => [
+        neighborhoods.map((n: Neighborhood) => [
           `${n.name}-${n.coordinates[0].toFixed(4)}-${n.coordinates[1].toFixed(4)}`,
           n
         ])
