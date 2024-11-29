@@ -54,14 +54,15 @@ export async function searchNeighborhoods(city: string, state: string): Promise<
       .filter((n: Neighborhood) => n.name && !n.name.includes('undefined'));
 
     // Remove duplicates based on name and coordinates
-    const uniqueNeighborhoods = Array.from(
-      new Map(
+    const uniqueNeighborhoods: Neighborhood[] = Array.from(
+      new Map<string, Neighborhood>(
         neighborhoods.map((n: Neighborhood) => [
           `${n.name}-${n.coordinates[0].toFixed(4)}-${n.coordinates[1].toFixed(4)}`,
           n
         ])
       ).values()
     );
+    
 
     cachedNeighborhoods[cacheKey] = uniqueNeighborhoods;
   }
